@@ -454,6 +454,9 @@ public class DataDto {
         this.excessMortalityCumulativePerMillion = excessMortalityCumulativePerMillion;
     }
 
+    public DataDto() {
+    }
+
     public DataDto(int id, Date date, Integer totalCases, Integer newCases, Double newCasesSmoothed, Integer totalDeaths, Integer newDeaths, Double newDeathsSmoothed, Double totalCasesPerMillion, Double newCasesPerMillion, Double newCasesSmoothedPerMillion, Double totalDeathsPerMillion, Double newDeathsPerMillion, Double newDeathsSmoothedPerMillion, Double reproductionRate, Integer icuPatients, Double icuPatientsPerMillion, Integer hospPatients, Double hospPatientsPerMillion, Integer weeklyIcuAdmissions, Double weeklyIcuAdmissionsPerMillion, Integer weeklyHospAdmissions, Double weeklyHospAdmissionsPerMillion, Long totalTests, Integer newTests, Double totalTestsPerThousand, Double newTestsPerThousand, Integer newTestsSmoothed, Double newTestsSmoothedPerThousand, Double positiveRate, Double testsPerCase, String testsUnits, Long totalVaccinations, Long peopleVaccinated, Long peopleFullyVaccinated, Long totalBoosters, Integer newVaccinations, Integer newVaccinationsSmoothed, Double totalVaccinationsPerHundred, Double peopleVaccinatedPerHundred, Double peopleFullyVaccinatedPerHundred, Double totalBoostersPerHundred, Integer newVaccinationsSmoothedPerMillion, Integer newPeopleVaccinatedSmoothed, Double newPeopleVaccinatedSmoothedPerHundred, Double stringencyIndex, Double excessMortalityCumulativeAbsolute, Double excessMortalityCumulative, Double excessMortality, Double excessMortalityCumulativePerMillion) {
         this.id = id;
         this.date = date;

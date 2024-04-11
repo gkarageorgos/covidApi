@@ -173,6 +173,9 @@ public class AreaDto {
         this.population = population;
     }
 
+    public AreaDto() {
+    }
+
     public AreaDto(int id, String isoCode, String continent, String location, Double populationDensity, Double medianAge, Double aged65Older, Double aged70Older, Double gdpPerCapita, Double extremePoverty, Double cardiovascDeathRate, Double diabetesPrevalence, Double femaleSmokers, Double maleSmokers, Double handwashingFacilities, Double hospitalBedsPerThousand, Double lifeExpectancy, Double humanDevelopmentIndex, long population) {
         this.id = id;
         this.isoCode = isoCode;
