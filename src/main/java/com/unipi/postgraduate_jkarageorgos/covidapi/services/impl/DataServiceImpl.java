@@ -139,6 +139,7 @@ public class DataServiceImpl implements DataService {
     private DataDto entityToDto(Data data){
         DataDto dataDto = new DataDto();
 
+        dataDto.setId(data.getId());
         dataDto.setDate(data.getDate());
         dataDto.setTotalCases(data.getTotalCases());
         dataDto.setNewCases(data.getNewCases());
