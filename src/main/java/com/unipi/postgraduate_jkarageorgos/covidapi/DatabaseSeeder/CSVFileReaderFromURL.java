@@ -28,11 +28,7 @@ public class CSVFileReaderFromURL {
     }
     public void readCSV() {
         try {
-            // Define the URL address of the CSV file
-            URL url = new URL(csvUrl);
-
-            // Create a BufferedReader to read the file
-            BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
+            BufferedReader reader = getBufferedReader();
 
             // Read the file line by line and print it
             String line;
