@@ -34,7 +34,7 @@ public class DatabaseSeeder implements CommandLineRunner {
 
         String line;
 
-        String iso_code = "";
+        //String iso_code = "";
 
         while ((line = bufferedReader.readLine()) != null) {
 
@@ -51,14 +51,16 @@ public class DatabaseSeeder implements CommandLineRunner {
                 map.put(key, value);
             }
 
-            // Check if the country code has not been added yet
+            /*// Check if the country code has not been added yet
             if (!iso_code.equals(map.get("iso_code"))) {
 
                 // Updating the country code for the check in the next iteration
                 iso_code = map.get("iso_code");
 
                 areaService.createAreaFromMap(map);
-            }
+            }*/
+
+            dataService.createDataFromMap(map);
 
         }
 

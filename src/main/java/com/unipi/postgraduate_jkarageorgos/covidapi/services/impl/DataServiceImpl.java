@@ -13,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -134,6 +137,199 @@ public class DataServiceImpl implements DataService {
         }
 
         dataRepository.delete(data);
+    }
+
+    @Override
+    public void createDataFromMap(Map<String, String> map) {
+        String iso_code = map.get("iso_code");
+
+        Area area = areaRepository.findAreaByIsoCode(iso_code);
+
+        Data data = mapToData(map);
+
+        data.setArea(area);
+
+        dataRepository.save(data);
+    }
+
+    private static <T> T getValueFromMap(Map<String, String> map, String key, Class<T> type){
+        String valueStr = map.get(key);
+        if (valueStr != null){
+            try {
+                if (type.equals(Double.class)) {
+                    Double doubleValue = Double.valueOf(valueStr);
+                    System.out.println(doubleValue);//
+                    return type.cast(doubleValue);
+                } else if (type.equals(Integer.class)) {
+                    Integer integerValue = Double.valueOf(valueStr).intValue();
+                    System.out.println(integerValue);//
+                    return type.cast(integerValue);
+                } else if (type.equals(Long.class)) {
+                    Long longValue = Double.valueOf(valueStr).longValue();
+                    System.out.println(longValue);//
+                    return type.cast(longValue);
+                } else if (type.equals(Date.class)) {
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                    java.util.Date parsedDate = dateFormat.parse(valueStr);
+                    return type.cast(new Date(parsedDate.getTime()));
+                }
+            }catch (NumberFormatException | ParseException e){
+                System.err.println("Error converting value '" + valueStr + "' to data type " + type.getSimpleName() + " for key '" + key + "': " + e.getMessage());
+            }
+        }
+        return null;
+    }
+
+    private Data mapToData(Map<String, String> map){
+
+        Date date = getValueFromMap(map, "date", Date.class);
+
+        Integer totalCases = getValueFromMap(map, "total_cases", Integer.class);
+
+        Integer newCases = getValueFromMap(map, "new_cases", Integer.class);
+
+        Double newCasesSmoothed = getValueFromMap(map, "new_cases_smoothed", Double.class);
+
+        Integer totalDeaths = getValueFromMap(map, "total_deaths", Integer.class);
+
+        Integer newDeaths = getValueFromMap(map, "new_deaths", Integer.class);
+
+        Double newDeathsSmoothed = getValueFromMap(map, "new_deaths_smoothed", Double.class);
+
+        Double totalCasesPerMillion = getValueFromMap(map, "total_cases_per_million", Double.class);
+
+        Double newCasesPerMillion = getValueFromMap(map, "new_cases_per_million", Double.class);
+
+        Double newCasesSmoothedPerMillion = getValueFromMap(map, "new_cases_smoothed_per_million", Double.class);
+
+        Double totalDeathsPerMillion = getValueFromMap(map, "total_deaths_per_million", Double.class);
+
+        Double newDeathsPerMillion = getValueFromMap(map, "new_deaths_per_million", Double.class);
+
+        Double newDeathsSmoothedPerMillion = getValueFromMap(map, "new_deaths_smoothed_per_million", Double.class);
+
+        Double reproductionRate = getValueFromMap(map, "reproduction_rate", Double.class);
+
+        Integer icuPatients = getValueFromMap(map, "icu_patients", Integer.class);
+
+        Double icuPatientsPerMillion = getValueFromMap(map, "icu_patients_per_million", Double.class);
+
+        Integer hospPatients = getValueFromMap(map, "hosp_patients", Integer.class);
+
+        Double hospPatientsPerMillion = getValueFromMap(map, "hosp_patients_per_million", Double.class);
+
+        Integer weeklyIcuAdmissions = getValueFromMap(map, "weekly_icu_admissions", Integer.class);
+
+        Double weeklyIcuAdmissionsPerMillion = getValueFromMap(map, "weekly_icu_admissions_per_million", Double.class);
+
+        Integer weeklyHospAdmissions = getValueFromMap(map, "weekly_hosp_admissions", Integer.class);
+
+        Double weeklyHospAdmissionsPerMillion = getValueFromMap(map, "weekly_hosp_admissions_per_million", Double.class);
+
+        Long totalTests = getValueFromMap(map, "total_tests", Long.class);
+
+        Integer newTests = getValueFromMap(map, "new_tests", Integer.class);
+
+        Double totalTestsPerThousand = getValueFromMap(map, "total_tests_per_thousand", Double.class);
+
+        Double newTestsPerThousand = getValueFromMap(map, "new_tests_per_thousand", Double.class);
+
+        Integer newTestsSmoothed = getValueFromMap(map, "new_tests_smoothed", Integer.class);
+
+        Double newTestsSmoothedPerThousand = getValueFromMap(map, "new_tests_smoothed_per_thousand", Double.class);
+
+        Double positiveRate = getValueFromMap(map, "positive_rate", Double.class);
+
+        Double testsPerCase = getValueFromMap(map, "tests_per_case", Double.class);
+
+        String testsUnits = map.get("tests_units");
+
+        Long totalVaccinations = getValueFromMap(map, "total_vaccinations", Long.class);
+
+        Long peopleVaccinated = getValueFromMap(map, "people_vaccinated", Long.class);
+
+        Long peopleFullyVaccinated = getValueFromMap(map, "people_fully_vaccinated", Long.class);
+
+        Long totalBoosters = getValueFromMap(map, "total_boosters", Long.class);
+
+        Integer newVaccinations = getValueFromMap(map, "new_vaccinations", Integer.class);
+
+        Integer newVaccinationsSmoothed = getValueFromMap(map, "new_vaccinations_smoothed", Integer.class);
+
+        Double totalVaccinationsPerHundred = getValueFromMap(map, "total_vaccinations_per_hundred", Double.class);
+
+        Double peopleVaccinatedPerHundred = getValueFromMap(map, "people_vaccinated_per_hundred", Double.class);
+
+        Double peopleFullyVaccinatedPerHundred = getValueFromMap(map, "people_fully_vaccinated_per_hundred", Double.class);
+
+        Double totalBoostersPerHundred = getValueFromMap(map, "total_boosters_per_hundred", Double.class);
+
+        Integer newVaccinationsSmoothedPerMillion = getValueFromMap(map, "new_vaccinations_smoothed_per_million", Integer.class);
+
+        Integer newPeopleVaccinatedSmoothed = getValueFromMap(map, "new_people_vaccinated_smoothed", Integer.class);
+
+        Double newPeopleVaccinatedSmoothedPerHundred = getValueFromMap(map, "new_people_vaccinated_smoothed_per_hundred", Double.class);
+
+        Double stringencyIndex = getValueFromMap(map, "stringency_index", Double.class);
+
+        Double excessMortalityCumulativeAbsolute = getValueFromMap(map, "excess_mortality_cumulative_absolute", Double.class);
+
+        Double excessMortalityCumulative = getValueFromMap(map, "excess_mortality_cumulative", Double.class);
+
+        Double excessMortality = getValueFromMap(map, "excess_mortality", Double.class);
+
+        Double excessMortalityCumulativePerMillion = getValueFromMap(map, "excess_mortality_cumulative_per_million", Double.class);
+
+        return new Data(date,
+                totalCases,
+                newCases,
+                newCasesSmoothed,
+                totalDeaths,
+                newDeaths,
+                newDeathsSmoothed,
+                totalCasesPerMillion,
+                newCasesPerMillion,
+                newCasesSmoothedPerMillion,
+                totalDeathsPerMillion,
+                newDeathsPerMillion,
+                newDeathsSmoothedPerMillion,
+                reproductionRate,
+                icuPatients,
+                icuPatientsPerMillion,
+                hospPatients,
+                hospPatientsPerMillion,
+                weeklyIcuAdmissions,
+                weeklyIcuAdmissionsPerMillion,
+                weeklyHospAdmissions,
+                weeklyHospAdmissionsPerMillion,
+                totalTests,
+                newTests,
+                totalTestsPerThousand,
+                newTestsPerThousand,
+                newTestsSmoothed,
+                newTestsSmoothedPerThousand,
+                positiveRate,
+                testsPerCase,
+                testsUnits,
+                totalVaccinations,
+                peopleVaccinated,
+                peopleFullyVaccinated,
+                totalBoosters,
+                newVaccinations,
+                newVaccinationsSmoothed,
+                totalVaccinationsPerHundred,
+                peopleVaccinatedPerHundred,
+                peopleFullyVaccinatedPerHundred,
+                totalBoostersPerHundred,
+                newVaccinationsSmoothedPerMillion,
+                newPeopleVaccinatedSmoothed,
+                newPeopleVaccinatedSmoothedPerHundred,
+                stringencyIndex,
+                excessMortalityCumulativeAbsolute,
+                excessMortalityCumulative,
+                excessMortality,
+                excessMortalityCumulativePerMillion
+        );
     }
 
     private DataDto entityToDto(Data data){

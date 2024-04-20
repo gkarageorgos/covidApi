@@ -96,6 +96,14 @@ public class AreaServiceImpl implements AreaService {
         areaRepository.save(area);
     }
 
+    private static Double getDoubleValueFromMap(Map<String, String> map, String key){
+        String valueStr = map.get(key);
+        Double value = null;
+        if (valueStr != null)
+            value = Double.valueOf(valueStr);
+        return value;
+    }
+
     private Area mapToArea(Map<String, String> map){
         String isoCode = map.get("iso_code");
         String continent = map.get("continent");
@@ -219,13 +227,5 @@ public class AreaServiceImpl implements AreaService {
                 humanDevelopmentIndex,
                 population
         );
-    }
-
-    private static Double getDoubleValueFromMap(Map<String, String> map, String key){
-        String valueStr = map.get(key);
-        Double value = null;
-        if (valueStr != null)
-            value = Double.valueOf(valueStr);
-        return value;
     }
 }
