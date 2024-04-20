@@ -1,8 +1,7 @@
 package com.unipi.postgraduate_jkarageorgos.covidapi.DatabaseSeeder;
 
-import com.unipi.postgraduate_jkarageorgos.covidapi.models.Area;
-import com.unipi.postgraduate_jkarageorgos.covidapi.repository.AreaRepository;
-import com.unipi.postgraduate_jkarageorgos.covidapi.repository.DataRepository;
+import com.unipi.postgraduate_jkarageorgos.covidapi.services.AreaService;
+import com.unipi.postgraduate_jkarageorgos.covidapi.services.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -14,13 +13,13 @@ import java.util.Map;
 @Component
 public class DatabaseSeeder implements CommandLineRunner {
 
-    private final AreaRepository areaRepository;
-    private final DataRepository dataRepository;
+    private final AreaService areaService;
+    private final DataService dataService;
 
     @Autowired
-    public DatabaseSeeder(AreaRepository areaRepository, DataRepository dataRepository) {
-        this.areaRepository = areaRepository;
-        this.dataRepository = dataRepository;
+    public DatabaseSeeder(AreaService areaService, DataService dataService) {
+        this.areaService = areaService;
+        this.dataService = dataService;
     }
 
     @Override
@@ -52,83 +51,18 @@ public class DatabaseSeeder implements CommandLineRunner {
                 map.put(key, value);
             }
 
-            // Checking if the country code has already been added
-            if (iso_code.equals(map.get("iso_code")))
-                continue;
+            // Check if the country code has not been added yet
+            if (!iso_code.equals(map.get("iso_code"))) {
 
-            // Updating the country code for the check in the next iteration
-            iso_code = values[0];
+                // Updating the country code for the check in the next iteration
+                iso_code = map.get("iso_code");
 
-            Area area = createArea(map);
+                areaService.createAreaFromMap(map);
+            }
 
-            areaRepository.save(area);
         }
+
+        bufferedReader.close();
     }
 
-    private static Double getDoubleValueFromMap(Map<String, String> map, String key){
-        String valueStr = map.get(key);
-        Double value = null;
-        if (valueStr != null)
-            value = Double.valueOf(valueStr);
-        return value;
-    }
-
-    private Area createArea(Map<String, String> map){
-
-        String isoCode = map.get("iso_code");
-
-        String continent = map.get("continent");
-
-        String location = map.get("location");
-
-        Double populationDensity = getDoubleValueFromMap(map, "population_density");
-
-        Double medianAge = getDoubleValueFromMap(map, "median_age");
-
-        Double aged65Older = getDoubleValueFromMap(map, "aged_65_older");
-
-        Double aged70Older = getDoubleValueFromMap(map, "aged_70_older");
-
-        Double gdpPerCapita = getDoubleValueFromMap(map, "gdp_per_capita");
-
-        Double extremePoverty = getDoubleValueFromMap(map, "extreme_poverty");
-
-        Double cardiovascDeathRate = getDoubleValueFromMap(map, "cardiovasc_death_rate");
-
-        Double diabetesPrevalence = getDoubleValueFromMap(map, "diabetes_prevalence");
-
-        Double femaleSmokers = getDoubleValueFromMap(map, "female_smokers");
-
-        Double maleSmokers = getDoubleValueFromMap(map, "male_smokers");
-
-        Double handwashingFacilities = getDoubleValueFromMap(map, "handwashing_facilities");
-
-        Double hospitalBedsPerThousand = getDoubleValueFromMap(map, "hospital_beds_per_thousand");
-
-        Double lifeExpectancy = getDoubleValueFromMap(map, "life_expectancy");
-
-        Double humanDevelopmentIndex= getDoubleValueFromMap(map, "human_development_index");
-
-        long population = Double.valueOf(map.get("population")).longValue();
-
-        return new Area(isoCode,
-                continent,
-                location,
-                populationDensity,
-                medianAge,
-                aged65Older,
-                aged70Older,
-                gdpPerCapita,
-                extremePoverty,
-                cardiovascDeathRate,
-                diabetesPrevalence,
-                femaleSmokers,
-                maleSmokers,
-                handwashingFacilities,
-                hospitalBedsPerThousand,
-                lifeExpectancy,
-                humanDevelopmentIndex,
-                population
-        );
-    }
 }
