@@ -60,7 +60,7 @@ public class DatabaseSeeder implements CommandLineRunner {
                 areaService.createAreaFromMap(map);
             }*/
 
-            dataService.createDataFromMap(map);
+            //dataService.createDataFromMap(map);
 
         }
 
