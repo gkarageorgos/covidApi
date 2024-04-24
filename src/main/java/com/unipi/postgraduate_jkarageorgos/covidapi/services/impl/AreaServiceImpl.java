@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,7 +24,7 @@ public class AreaServiceImpl implements AreaService {
 
     @Override
     public AreaDto createArea(AreaDto areaDto) {
-        Area area = areaRepository.save(dtoToEntity(areaDto));
+        Area area = areaRepository.save(dtoToEntity(areaDto, new Area()));
         return entityToDto(area);
     }
 
@@ -42,6 +44,69 @@ public class AreaServiceImpl implements AreaService {
     public AreaDto updateArea(AreaDto areaDto, int id) {
         Area area = areaRepository.findById(id).orElseThrow(() -> new AreaNotFoundException("Area could not be found by id"));
 
+        Area updatedArea = areaRepository.save(dtoToEntity(areaDto, area));
+
+        return entityToDto(updatedArea);
+    }
+
+    @Override
+    public void deleteArea(int id) {
+        Area area = areaRepository.findById(id).orElseThrow(() -> new AreaNotFoundException("Area could not be found by id"));
+        areaRepository.delete(area);
+    }
+
+    @Override
+    public void updateAreaFromMap(Map<String, String> map) {
+        String location = map.get("location");
+
+        Optional<Area> optional = areaRepository.findAreaByLocation(location);
+
+        if (optional.isPresent()){
+            Area area = optional.get();
+
+            areaRepository.save(mapToEntity(map, area));
+        }else {
+            createAreaFromMap(map);
+        }
+    }
+
+    @Override
+    public void createAreaFromMap(Map<String, String> map) {
+        areaRepository.save(mapToEntity(map, new Area()));
+    }
+
+    private static Double getDoubleValueFromMap(Map<String, String> map, String key){
+        String valueStr = map.get(key);
+        Double value = null;
+        if (valueStr != null)
+            value = Double.valueOf(valueStr);
+        return value;
+    }
+
+    private Area mapToEntity(Map<String, String> map, Area area){
+        area.setIsoCode(map.get("iso_code"));
+        area.setContinent(map.get("continent"));
+        area.setLocation(map.get("location"));
+        area.setPopulationDensity(getDoubleValueFromMap(map, "population_density"));
+        area.setMedianAge(getDoubleValueFromMap(map, "median_age"));
+        area.setAged65Older(getDoubleValueFromMap(map, "aged_65_older"));
+        area.setAged70Older(getDoubleValueFromMap(map, "aged_70_older"));
+        area.setGdpPerCapita(getDoubleValueFromMap(map, "gdp_per_capita"));
+        area.setExtremePoverty(getDoubleValueFromMap(map, "extreme_poverty"));
+        area.setCardiovascDeathRate(getDoubleValueFromMap(map, "cardiovasc_death_rate"));
+        area.setDiabetesPrevalence(getDoubleValueFromMap(map, "diabetes_prevalence"));
+        area.setFemaleSmokers(getDoubleValueFromMap(map, "female_smokers"));
+        area.setMaleSmokers(getDoubleValueFromMap(map, "male_smokers"));
+        area.setHandwashingFacilities(getDoubleValueFromMap(map, "handwashing_facilities"));
+        area.setHospitalBedsPerThousand(getDoubleValueFromMap(map, "hospital_beds_per_thousand"));
+        area.setLifeExpectancy(getDoubleValueFromMap(map, "life_expectancy"));
+        area.setHumanDevelopmentIndex(getDoubleValueFromMap(map, "human_development_index"));
+        area.setPopulation(Double.valueOf(map.get("population")).longValue());
+
+        return area;
+    }
+
+    private Area dtoToEntity(AreaDto areaDto, Area area){
         area.setIsoCode(areaDto.getIsoCode());
         area.setContinent(areaDto.getContinent());
         area.setLocation(areaDto.getLocation());
@@ -61,15 +126,7 @@ public class AreaServiceImpl implements AreaService {
         area.setHumanDevelopmentIndex(areaDto.getHumanDevelopmentIndex());
         area.setPopulation(areaDto.getPopulation());
 
-        Area updateArea = areaRepository.save(area);
-
-        return entityToDto(updateArea);
-    }
-
-    @Override
-    public void deleteArea(int id) {
-        Area area = areaRepository.findById(id).orElseThrow(() -> new AreaNotFoundException("Area could not be found by id"));
-        areaRepository.delete(area);
+        return area;
     }
 
     private AreaDto entityToDto(Area area) {
@@ -95,47 +152,6 @@ public class AreaServiceImpl implements AreaService {
 
         return new AreaDto(id,
                 isoCode,
-                continent,
-                location,
-                populationDensity,
-                medianAge,
-                aged65Older,
-                aged70Older,
-                gdpPerCapita,
-                extremePoverty,
-                cardiovascDeathRate,
-                diabetesPrevalence,
-                femaleSmokers,
-                maleSmokers,
-                handwashingFacilities,
-                hospitalBedsPerThousand,
-                lifeExpectancy,
-                humanDevelopmentIndex,
-                population
-        );
-    }
-
-    private Area dtoToEntity(AreaDto areaDto){
-        String isoCode = areaDto.getIsoCode();
-        String continent = areaDto.getContinent();
-        String location = areaDto.getLocation();
-        Double populationDensity = areaDto.getPopulationDensity();
-        Double medianAge = areaDto.getMedianAge();
-        Double aged65Older = areaDto.getAged65Older();
-        Double aged70Older = areaDto.getAged70Older();
-        Double gdpPerCapita = areaDto.getGdpPerCapita();
-        Double extremePoverty = areaDto.getExtremePoverty();
-        Double cardiovascDeathRate = areaDto.getCardiovascDeathRate();
-        Double diabetesPrevalence = areaDto.getDiabetesPrevalence();
-        Double femaleSmokers = areaDto.getFemaleSmokers();
-        Double maleSmokers = areaDto.getMaleSmokers();
-        Double handwashingFacilities = areaDto.getHandwashingFacilities();
-        Double hospitalBedsPerThousand = areaDto.getHospitalBedsPerThousand();
-        Double lifeExpectancy = areaDto.getLifeExpectancy();
-        Double humanDevelopmentIndex= areaDto.getHumanDevelopmentIndex();
-        long population = areaDto.getPopulation();
-
-        return new Area(isoCode,
                 continent,
                 location,
                 populationDensity,
