@@ -1,4 +1,4 @@
-package com.unipi.postgraduate_jkarageorgos.covidapi.services;
+package com.unipi.postgraduate_jkarageorgos.covidapi.service;
 
 import com.unipi.postgraduate_jkarageorgos.covidapi.dto.DataDto;
 
@@ -12,4 +12,6 @@ public interface DataService {
     DataDto getDataById(int areaId, int dataId);
     DataDto updateData(int areaId, int dataId, DataDto dataDto);
     void deleteData(int areaId, int dataId);
+    void createDataFromMap(Map<String, String> map);
+    void updateDataFromMap(Map<String, String> map);
 }

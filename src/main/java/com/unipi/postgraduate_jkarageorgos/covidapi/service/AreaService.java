@@ -1,4 +1,4 @@
-package com.unipi.postgraduate_jkarageorgos.covidapi.services;
+package com.unipi.postgraduate_jkarageorgos.covidapi.service;
 
 import com.unipi.postgraduate_jkarageorgos.covidapi.dto.AreaDto;
 
@@ -12,4 +12,6 @@ public interface AreaService {
     AreaDto getAreaById(int id);
     AreaDto updateArea(AreaDto areaDto, int id);
     void deleteArea(int id);
+    void createAreaFromMap(Map<String, String> map);
+    void updateAreaFromMap(Map<String, String> map);
 }

@@ -1,4 +1,4 @@
-package com.unipi.postgraduate_jkarageorgos.covidapi.models;
+package com.unipi.postgraduate_jkarageorgos.covidapi.model;
 
 import jakarta.persistence.*;
 
@@ -186,54 +186,5 @@ public class Area {
 
     public void setDataList(List<Data> dataList) {
         this.dataList = dataList;
-    }
-
-    public Area() {    }
-
-    public Area(String isoCode, String continent, String location, Double populationDensity, Double medianAge, Double aged65Older, Double aged70Older, Double gdpPerCapita, Double extremePoverty, Double cardiovascDeathRate, Double diabetesPrevalence, Double femaleSmokers, Double maleSmokers, Double handwashingFacilities, Double hospitalBedsPerThousand, Double lifeExpectancy, Double humanDevelopmentIndex, long population) {
-        this.isoCode = isoCode;
-        this.continent = continent;
-        this.location = location;
-        this.populationDensity = populationDensity;
-        this.medianAge = medianAge;
-        this.aged65Older = aged65Older;
-        this.aged70Older = aged70Older;
-        this.gdpPerCapita = gdpPerCapita;
-        this.extremePoverty = extremePoverty;
-        this.cardiovascDeathRate = cardiovascDeathRate;
-        this.diabetesPrevalence = diabetesPrevalence;
-        this.femaleSmokers = femaleSmokers;
-        this.maleSmokers = maleSmokers;
-        this.handwashingFacilities = handwashingFacilities;
-        this.hospitalBedsPerThousand = hospitalBedsPerThousand;
-        this.lifeExpectancy = lifeExpectancy;
-        this.humanDevelopmentIndex = humanDevelopmentIndex;
-        this.population = population;
-    }
-
-    @Override
-    public String toString() {
-        return "Area{" +
-                "id=" + id +
-                ", isoCode='" + isoCode + '\'' +
-                ", continent='" + continent + '\'' +
-                ", location='" + location + '\'' +
-                ", populationDensity=" + populationDensity +
-                ", medianAge=" + medianAge +
-                ", aged65Older=" + aged65Older +
-                ", aged70Older=" + aged70Older +
-                ", gdpPerCapita=" + gdpPerCapita +
-                ", extremePoverty=" + extremePoverty +
-                ", cardiovascDeathRate=" + cardiovascDeathRate +
-                ", diabetesPrevalence=" + diabetesPrevalence +
-                ", femaleSmokers=" + femaleSmokers +
-                ", maleSmokers=" + maleSmokers +
-                ", handwashingFacilities=" + handwashingFacilities +
-                ", hospitalBedsPerThousand=" + hospitalBedsPerThousand +
-                ", lifeExpectancy=" + lifeExpectancy +
-                ", humanDevelopmentIndex=" + humanDevelopmentIndex +
-                ", population=" + population +
-                ", dataList=" + dataList +
-                '}';
     }
 }
