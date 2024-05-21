@@ -1,4 +1,4 @@
-package com.unipi.postgraduate_jkarageorgos.covidapi.models;
+package com.unipi.postgraduate_jkarageorgos.covidapi.model;
 
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;

@@ -1,4 +1,4 @@
-package com.unipi.postgraduate_jkarageorgos.covidapi.services.impl;
+package com.unipi.postgraduate_jkarageorgos.covidapi.service.impl;
 
 import com.unipi.postgraduate_jkarageorgos.covidapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

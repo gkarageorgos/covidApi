@@ -1,6 +1,6 @@
 package com.unipi.postgraduate_jkarageorgos.covidapi.filter;
 
-import com.unipi.postgraduate_jkarageorgos.covidapi.services.impl.JwtService;
+import com.unipi.postgraduate_jkarageorgos.covidapi.service.impl.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

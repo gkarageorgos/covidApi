@@ -1,7 +1,7 @@
 package com.unipi.postgraduate_jkarageorgos.covidapi.config;
 
 import com.unipi.postgraduate_jkarageorgos.covidapi.filter.JwtAuthenticationFilter;
-import com.unipi.postgraduate_jkarageorgos.covidapi.services.impl.UserDetailsServiceImpl;
+import com.unipi.postgraduate_jkarageorgos.covidapi.service.impl.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

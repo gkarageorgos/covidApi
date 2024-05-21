@@ -1,6 +1,6 @@
-package com.unipi.postgraduate_jkarageorgos.covidapi.services.impl;
+package com.unipi.postgraduate_jkarageorgos.covidapi.service.impl;
 
-import com.unipi.postgraduate_jkarageorgos.covidapi.models.User;
+import com.unipi.postgraduate_jkarageorgos.covidapi.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;

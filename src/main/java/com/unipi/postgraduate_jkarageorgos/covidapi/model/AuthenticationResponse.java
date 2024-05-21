@@ -1,4 +1,4 @@
-package com.unipi.postgraduate_jkarageorgos.covidapi.models;
+package com.unipi.postgraduate_jkarageorgos.covidapi.model;
 
 public class AuthenticationResponse {
     private String token;

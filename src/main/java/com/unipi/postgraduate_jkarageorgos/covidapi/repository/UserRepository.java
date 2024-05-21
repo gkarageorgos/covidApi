@@ -1,6 +1,6 @@
 package com.unipi.postgraduate_jkarageorgos.covidapi.repository;
 
-import com.unipi.postgraduate_jkarageorgos.covidapi.models.User;
+import com.unipi.postgraduate_jkarageorgos.covidapi.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

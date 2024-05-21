@@ -1,8 +1,8 @@
-package com.unipi.postgraduate_jkarageorgos.covidapi.controllers;
+package com.unipi.postgraduate_jkarageorgos.covidapi.controller;
 
-import com.unipi.postgraduate_jkarageorgos.covidapi.models.AuthenticationResponse;
-import com.unipi.postgraduate_jkarageorgos.covidapi.models.User;
-import com.unipi.postgraduate_jkarageorgos.covidapi.services.impl.AuthenticationService;
+import com.unipi.postgraduate_jkarageorgos.covidapi.model.AuthenticationResponse;
+import com.unipi.postgraduate_jkarageorgos.covidapi.model.User;
+import com.unipi.postgraduate_jkarageorgos.covidapi.service.impl.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

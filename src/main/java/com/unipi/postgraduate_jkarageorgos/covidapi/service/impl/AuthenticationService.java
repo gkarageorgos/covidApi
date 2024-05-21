@@ -1,8 +1,8 @@
-package com.unipi.postgraduate_jkarageorgos.covidapi.services.impl;
+package com.unipi.postgraduate_jkarageorgos.covidapi.service.impl;
 
 import com.unipi.postgraduate_jkarageorgos.covidapi.exceptions.UserNotFoundException;
-import com.unipi.postgraduate_jkarageorgos.covidapi.models.AuthenticationResponse;
-import com.unipi.postgraduate_jkarageorgos.covidapi.models.User;
+import com.unipi.postgraduate_jkarageorgos.covidapi.model.AuthenticationResponse;
+import com.unipi.postgraduate_jkarageorgos.covidapi.model.User;
 import com.unipi.postgraduate_jkarageorgos.covidapi.repository.UserRepository;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
