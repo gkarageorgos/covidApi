@@ -2,8 +2,8 @@ package com.unipi.postgraduate_jkarageorgos.covidapi.scheduled;
 
 import com.unipi.postgraduate_jkarageorgos.covidapi.map.MapsBuilder;
 import com.unipi.postgraduate_jkarageorgos.covidapi.reader.CSVReader;
-import com.unipi.postgraduate_jkarageorgos.covidapi.services.AreaService;
-import com.unipi.postgraduate_jkarageorgos.covidapi.services.DataService;
+import com.unipi.postgraduate_jkarageorgos.covidapi.service.AreaService;
+import com.unipi.postgraduate_jkarageorgos.covidapi.service.DataService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

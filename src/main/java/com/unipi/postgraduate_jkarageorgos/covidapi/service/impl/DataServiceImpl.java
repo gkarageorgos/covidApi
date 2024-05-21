@@ -1,13 +1,13 @@
-package com.unipi.postgraduate_jkarageorgos.covidapi.services.impl;
+package com.unipi.postgraduate_jkarageorgos.covidapi.service.impl;
 
 import com.unipi.postgraduate_jkarageorgos.covidapi.dto.DataDto;
 import com.unipi.postgraduate_jkarageorgos.covidapi.exceptions.AreaNotFoundException;
 import com.unipi.postgraduate_jkarageorgos.covidapi.exceptions.DataNotFoundException;
-import com.unipi.postgraduate_jkarageorgos.covidapi.models.Area;
-import com.unipi.postgraduate_jkarageorgos.covidapi.models.Data;
+import com.unipi.postgraduate_jkarageorgos.covidapi.model.Area;
+import com.unipi.postgraduate_jkarageorgos.covidapi.model.Data;
 import com.unipi.postgraduate_jkarageorgos.covidapi.repository.AreaRepository;
 import com.unipi.postgraduate_jkarageorgos.covidapi.repository.DataRepository;
-import com.unipi.postgraduate_jkarageorgos.covidapi.services.DataService;
+import com.unipi.postgraduate_jkarageorgos.covidapi.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

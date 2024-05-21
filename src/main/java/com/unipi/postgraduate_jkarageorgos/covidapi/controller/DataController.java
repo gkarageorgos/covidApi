@@ -1,7 +1,7 @@
-package com.unipi.postgraduate_jkarageorgos.covidapi.controllers;
+package com.unipi.postgraduate_jkarageorgos.covidapi.controller;
 
 import com.unipi.postgraduate_jkarageorgos.covidapi.dto.DataDto;
-import com.unipi.postgraduate_jkarageorgos.covidapi.services.DataService;
+import com.unipi.postgraduate_jkarageorgos.covidapi.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

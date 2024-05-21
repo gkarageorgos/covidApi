@@ -1,6 +1,6 @@
 package com.unipi.postgraduate_jkarageorgos.covidapi.repository;
 
-import com.unipi.postgraduate_jkarageorgos.covidapi.models.Data;
+import com.unipi.postgraduate_jkarageorgos.covidapi.model.Data;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.sql.Date;

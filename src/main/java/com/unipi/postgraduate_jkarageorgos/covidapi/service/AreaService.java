@@ -1,4 +1,4 @@
-package com.unipi.postgraduate_jkarageorgos.covidapi.services;
+package com.unipi.postgraduate_jkarageorgos.covidapi.service;
 
 import com.unipi.postgraduate_jkarageorgos.covidapi.dto.AreaDto;
 
