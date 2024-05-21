@@ -1,7 +1,8 @@
 package com.unipi.postgraduate_jkarageorgos.covidapi.DatabaseSeeder;
 
-import com.unipi.postgraduate_jkarageorgos.covidapi.services.AreaService;
-import com.unipi.postgraduate_jkarageorgos.covidapi.services.DataService;
+import com.unipi.postgraduate_jkarageorgos.covidapi.reader.CSVReader;
+import com.unipi.postgraduate_jkarageorgos.covidapi.service.AreaService;
+import com.unipi.postgraduate_jkarageorgos.covidapi.service.DataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -26,7 +27,11 @@ public class DatabaseSeeder implements CommandLineRunner {
     public void run(String... args) throws Exception {
         String csvUrl = "https://github.com/owid/covid-19-data/raw/master/public/data/owid-covid-data.csv";
 
-        BufferedReader bufferedReader = new CSVFileReaderFromURL(csvUrl).getBufferedReader();
+        CSVReader csvReader = new CSVReader(csvUrl);
+
+        csvReader.BufferedReaderFromUrl();
+
+        BufferedReader bufferedReader = csvReader.getBufferedReader();
 
         String firstLine = bufferedReader.readLine();
 
