@@ -43,7 +43,9 @@ public class DataServiceImpl implements DataService {
 
     @Override
     public List<DataDto> getDataByAreaId(int areaId) {
-        List<Data> dataList = dataRepository.findByAreaId(areaId);
+        Area area = areaRepository.findById(areaId).orElseThrow(() -> new AreaNotFoundException("Area could not be found by id"));
+
+        List<Data> dataList = area.getDataList();
 
         return dataList.stream().map(data -> entityToDto(data)).collect(Collectors.toList());
     }

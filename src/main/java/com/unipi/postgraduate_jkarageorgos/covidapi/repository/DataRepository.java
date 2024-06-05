@@ -8,6 +8,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DataRepository extends JpaRepository<Data, Integer> {
-    List<Data> findByAreaId(int id);
     Optional<Data> findByAreaLocationAndDate(String location, Date date);
 }
