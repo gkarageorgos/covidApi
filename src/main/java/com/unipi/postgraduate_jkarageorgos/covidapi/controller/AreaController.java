@@ -19,7 +19,7 @@ public class AreaController {
         this.areaService = areaService;
     }
 
-    @PostMapping("area/create")
+    @PostMapping("area")
     public ResponseEntity<AreaDto> createArea(@RequestBody AreaDto areaDto) {
         return new ResponseEntity<>(areaService.createArea(areaDto), HttpStatus.CREATED);
     }
@@ -34,13 +34,13 @@ public class AreaController {
         return new ResponseEntity<>(areaService.getAreaById(id), HttpStatus.OK);
     }
 
-    @PutMapping("area/{id}/update")
+    @PutMapping("area/{id}")
     public ResponseEntity<AreaDto> updateArea(@RequestBody AreaDto areaDto, @PathVariable("id") int id) {
         AreaDto response = areaService.updateArea(areaDto, id);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @DeleteMapping("area/{id}/delete")
+    @DeleteMapping("area/{id}")
     public ResponseEntity<String> deleteArea(@PathVariable("id") int id) {
         areaService.deleteArea(id);
         return new ResponseEntity<>("Area deleted successfully", HttpStatus.OK);

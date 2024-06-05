@@ -19,7 +19,7 @@ public class DataController {
         this.dataService = dataService;
     }
 
-    @PostMapping("/area/{areaId}/data/create")
+    @PostMapping("/area/{areaId}/data")
     public ResponseEntity<DataDto> createData(@PathVariable(value = "areaId") int areaId, @RequestBody DataDto dataDto) {
         return new ResponseEntity<>(dataService.createData(areaId, dataDto), HttpStatus.CREATED);
     }
