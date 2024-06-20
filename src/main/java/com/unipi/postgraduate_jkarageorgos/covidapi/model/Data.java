@@ -9,6 +9,7 @@ public class Data {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(unique = true)
     private Date date;
     private Integer totalCases;
     private Integer newCases;

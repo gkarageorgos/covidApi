@@ -10,8 +10,10 @@ public class Area {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(unique = true)
     private String isoCode;
     private String continent;
+    @Column(unique = true)
     private String location;
     private Double populationDensity;
     private Double medianAge;
