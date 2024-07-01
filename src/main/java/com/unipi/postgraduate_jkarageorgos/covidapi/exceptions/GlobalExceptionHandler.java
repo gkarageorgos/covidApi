@@ -21,6 +21,11 @@ public class GlobalExceptionHandler {
         return handleNotFoundException(ex);
     }
 
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ErrorObject> handleUserNotFoundException(UserNotFoundException ex, WebRequest request) {
+        return handleNotFoundException(ex);
+    }
+
     private ResponseEntity<ErrorObject> handleNotFoundException(RuntimeException ex) {
         ErrorObject errorObject = new ErrorObject();
 
