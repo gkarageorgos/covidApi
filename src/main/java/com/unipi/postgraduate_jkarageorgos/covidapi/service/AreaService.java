@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public interface AreaService {
-    void createAreaFromMap(Map<String, String> map);
     AreaDto createArea(AreaDto areaDto);
     List<AreaDto> getAllArea();
     AreaDto getAreaById(int id);
