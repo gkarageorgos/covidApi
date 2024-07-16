@@ -1,6 +1,7 @@
 package com.unipi.postgraduate_jkarageorgos.covidapi.controller;
 
 import com.unipi.postgraduate_jkarageorgos.covidapi.dto.AreaDto;
+import com.unipi.postgraduate_jkarageorgos.covidapi.model.DeleteResponse;
 import com.unipi.postgraduate_jkarageorgos.covidapi.service.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,8 +42,7 @@ public class AreaController {
     }
 
     @DeleteMapping("area/{id}")
-    public ResponseEntity<String> deleteArea(@PathVariable("id") int id) {
-        areaService.deleteArea(id);
-        return new ResponseEntity<>("Area deleted successfully", HttpStatus.OK);
+    public ResponseEntity<DeleteResponse> deleteArea(@PathVariable("id") int id) {
+        return new ResponseEntity<>(areaService.deleteArea(id), HttpStatus.OK);
     }
 }

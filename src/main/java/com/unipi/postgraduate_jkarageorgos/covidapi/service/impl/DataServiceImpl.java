@@ -5,6 +5,7 @@ import com.unipi.postgraduate_jkarageorgos.covidapi.exceptions.AreaNotFoundExcep
 import com.unipi.postgraduate_jkarageorgos.covidapi.exceptions.DataNotFoundException;
 import com.unipi.postgraduate_jkarageorgos.covidapi.model.Area;
 import com.unipi.postgraduate_jkarageorgos.covidapi.model.Data;
+import com.unipi.postgraduate_jkarageorgos.covidapi.model.DeleteResponse;
 import com.unipi.postgraduate_jkarageorgos.covidapi.repository.AreaRepository;
 import com.unipi.postgraduate_jkarageorgos.covidapi.repository.DataRepository;
 import com.unipi.postgraduate_jkarageorgos.covidapi.service.DataService;
@@ -79,7 +80,7 @@ public class DataServiceImpl implements DataService {
     }
 
     @Override
-    public void deleteData(int areaId, int dataId) {
+    public DeleteResponse deleteData(int areaId, int dataId) {
         Area area = areaRepository.findById(areaId).orElseThrow(() -> new AreaNotFoundException("Area could not be found by id"));
 
         Data data = dataRepository.findById(dataId).orElseThrow(() -> new DataNotFoundException("Data with associate area not found"));
@@ -89,6 +90,8 @@ public class DataServiceImpl implements DataService {
         }
 
         dataRepository.delete(data);
+
+        return new DeleteResponse("Data deleted successfully");
     }
 
     @Override

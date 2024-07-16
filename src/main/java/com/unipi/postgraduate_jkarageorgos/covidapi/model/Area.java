@@ -32,6 +32,7 @@ public class Area {
     private long population;
 
     @OneToMany(mappedBy = "area", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OrderBy("date ASC")
     private List<Data> dataList = new ArrayList<Data>();
 
     public int getId() {

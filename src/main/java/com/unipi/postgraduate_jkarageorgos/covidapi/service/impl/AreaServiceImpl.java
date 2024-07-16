@@ -3,6 +3,7 @@ package com.unipi.postgraduate_jkarageorgos.covidapi.service.impl;
 import com.unipi.postgraduate_jkarageorgos.covidapi.dto.AreaDto;
 import com.unipi.postgraduate_jkarageorgos.covidapi.exceptions.AreaNotFoundException;
 import com.unipi.postgraduate_jkarageorgos.covidapi.model.Area;
+import com.unipi.postgraduate_jkarageorgos.covidapi.model.DeleteResponse;
 import com.unipi.postgraduate_jkarageorgos.covidapi.repository.AreaRepository;
 import com.unipi.postgraduate_jkarageorgos.covidapi.service.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,9 +51,10 @@ public class AreaServiceImpl implements AreaService {
     }
 
     @Override
-    public void deleteArea(int id) {
+    public DeleteResponse deleteArea(int id) {
         Area area = areaRepository.findById(id).orElseThrow(() -> new AreaNotFoundException("Area could not be found by id"));
         areaRepository.delete(area);
+        return new DeleteResponse("Area deleted successfully");
     }
 
     @Override

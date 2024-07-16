@@ -1,6 +1,7 @@
 package com.unipi.postgraduate_jkarageorgos.covidapi.service.impl;
 
 import com.unipi.postgraduate_jkarageorgos.covidapi.model.User;
+import com.unipi.postgraduate_jkarageorgos.covidapi.repository.TokenRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -16,13 +17,23 @@ import java.util.function.Function;
 public class JwtService {
     private final String SECRET_KEY = "d1d2d6fbf771821d554ee90d743a2f0d870d8572f25006d41e7feb3a46d6d3f7";
 
+    private final TokenRepository tokenRepository;
+
+    public JwtService(TokenRepository tokenRepository) {
+        this.tokenRepository = tokenRepository;
+    }
+
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
     public boolean isValid(String token, UserDetails user) {
         String username = extractUsername(token);
-        return username.equals(user.getUsername()) && !isTokenExpired(token);
+
+        boolean isValidToken = tokenRepository.findByToken(token)
+                .map(t->!t.isLoggedOut()).orElse(false);
+
+        return (username.equals(user.getUsername()) && !isTokenExpired(token)) && isValidToken;
     }
 
     private boolean isTokenExpired(String token) {
