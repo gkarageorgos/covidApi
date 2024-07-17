@@ -45,6 +45,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         req->req.requestMatchers("/login/**", "/register/**")
                                 .permitAll()
+                                .requestMatchers("/", "/index.html", "/static/**", "/favicon.ico")
+                                .permitAll()
                                 .requestMatchers(HttpMethod.POST, "/api/area/**", "/api/area/**/data/** ")
                                 .hasAuthority("ADMIN")
                                 .requestMatchers(HttpMethod.PUT, "/api/area/**", "/api/area/**/data/**")
